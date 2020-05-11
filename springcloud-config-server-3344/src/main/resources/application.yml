@@ -7,6 +7,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/leib1368/springcloud-config.git
+          uri: https://github.com/leib1368/springcloud.git
 
 
