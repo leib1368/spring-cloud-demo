@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/springcloud-consumer-hystrix-dashboard/springcloud-consumer-hystrix-dashboard.iml" filepath="$PROJECT_DIR$/springcloud-consumer-hystrix-dashboard/springcloud-consumer-hystrix-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-provider-dept-hystrix-dashboard/springcloud-provider-dept-hystrix-dashboard.iml" filepath="$PROJECT_DIR$/springcloud-provider-dept-hystrix-dashboard/springcloud-provider-dept-hystrix-dashboard.iml" />
     </modules>
   </component>
 </project>
