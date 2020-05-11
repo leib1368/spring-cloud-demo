@@ -1,0 +1,5 @@
+server:
+  port: 3355
+spring:
+  application:
+    name: springcloud-config-client-3355
