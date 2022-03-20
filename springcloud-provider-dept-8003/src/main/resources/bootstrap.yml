@@ -1,0 +1,38 @@
+server:
+  port: 8003 #服务端口号
+#上传远端
+#mybatis:
+#  type-aliases-package: leib.demo.entity
+#  config-location: classpath:mybatis/mybatis-config.xml
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+
+spring:
+  application:
+    name: dept8003
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #指定Nacos服务端地址
+      config:
+        # 配置中心地址
+        server-addr: localhost:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #yml文件纯数字 要用单引号包起来
+    password: 1996Yu0802
+    url: jdbc:mysql://8.136.95.29:3306/rrys?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  #暴露的监控端点

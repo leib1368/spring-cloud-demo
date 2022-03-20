@@ -1,7 +1,7 @@
 package leib.demo.service;
 
-import feign.hystrix.FallbackFactory;
 import leib.demo.entity.Dept;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 

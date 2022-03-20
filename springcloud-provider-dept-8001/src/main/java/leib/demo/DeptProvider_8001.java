@@ -1,6 +1,5 @@
 package leib.demo;
 
-import com.netflix.hystrix.contrib.sample.stream.HystrixConfigSseServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -18,13 +17,5 @@ import org.springframework.context.annotation.Bean;
 public class DeptProvider_8001 {
     public static void main(String[] args) {
         SpringApplication.run(DeptProvider_8001.class,args);
-    }
-
-    //增加servlet
-    @Bean
-    public ServletRegistrationBean HystrixConfigSseServlet(){
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new HystrixConfigSseServlet());
-        registrationBean.addUrlMappings("/actuator/hystrix.stream");
-        return registrationBean;
     }
 }
