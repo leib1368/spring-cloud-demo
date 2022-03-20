@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: springcloudalibaba-provider-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #指定Nacos服务端地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  #暴露的监控端点
+server:
+  port: 8004 #服务端口号

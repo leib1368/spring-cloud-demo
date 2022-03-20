@@ -25,6 +25,7 @@
         <module>springcloud-config-eureka-7001</module>
         <module>springcloud-config-dept-8001</module>
         <module>springcloud-config-dept-8002</module>
+        <module>springcloud-provider-dept-8004</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -37,10 +38,27 @@
         <junit.version>4.12</junit.version>
         <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.18</lombok.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <alibaba.nacos.version>2.0.4</alibaba.nacos.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- SpringCloud Alibaba 微服务 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Alibaba Nacos 配置 -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${alibaba.nacos.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -52,7 +70,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.4.RELEASE</version>
+                <version>2.6.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
