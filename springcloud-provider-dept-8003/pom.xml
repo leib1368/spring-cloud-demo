@@ -12,12 +12,24 @@
     <artifactId>springcloud-provider-dept-8003</artifactId>
 
     <dependencies>
-        <!--eureka-->
+        <!-- SpringCloud Alibaba Nacos -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.4.6.RELEASE</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
+        <!-- SpringCloud Alibaba Nacos Config -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+<!--        &lt;!&ndash;eureka&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-eureka</artifactId>-->
+<!--            <version>1.4.6.RELEASE</version>-->
+<!--        </dependency>-->
 
         <!--actuator完善监控信息-->
         <dependency>
@@ -34,6 +46,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
 
         <dependency>
@@ -74,6 +87,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.3.16</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
