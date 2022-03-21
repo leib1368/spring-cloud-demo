@@ -5,6 +5,13 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848  #指定Nacos服务端地址
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #yml文件纯数字 要用单引号包起来
+    password: 1996Yu0802
+    url: jdbc:mysql://8.136.95.29:3306/rrys?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 management:
   endpoints:
     web:
