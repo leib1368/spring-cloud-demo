@@ -26,6 +26,7 @@
         <module>springcloud-config-dept-8001</module>
         <module>springcloud-config-dept-8002</module>
         <module>springcloud-provider-dept-8004</module>
+        <module>springcloud-gateway</module>
     </modules>
 
     <packaging>pom</packaging>

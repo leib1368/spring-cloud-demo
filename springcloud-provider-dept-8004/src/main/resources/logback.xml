@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+	<property scope="context" name="LOG_DIR" value="logs" />
+	<!-- 日志输出格式 -->
+	<property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{userid}] [%X{traceId}/%X{spanId}] [%thread] %-5level %logger{36} - %msg%n"/>
+	<!-- 控制台输出日志 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss}, %p, %c, %L, %M : %m%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 异步输出 -->
+	<appender name ="ASYNC" class= "ch.qos.logback.classic.AsyncAppender">
+		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<discardingThreshold>0</discardingThreshold>
+		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<queueSize>512</queueSize>
+		<!-- 添加附加的appender,最多只能添加一个 -->
+		<appender-ref ref ="STDOUT"/>
+		<includeCallerData>true</includeCallerData>
+	</appender>
+
+	<!-- 按照登录用户的userId（机构号、用户号）分文件打印日志 -->
+	  <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+	    <discriminator>
+	        <key>userid</key>
+	        <defaultValue>systemDefault</defaultValue>
+	    </discriminator>
+	    <sift>
+	        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+		        	<fileNamePattern>${LOG_DIR}/RunLogs/${userid}/%d{yyyyMMdd}_%i.log</fileNamePattern>
+					<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+					<maxFileSize>30MB</maxFileSize>
+					<maxHistory>60</maxHistory>
+					<totalSizeCap>20GB</totalSizeCap>
+		   		</rollingPolicy>
+				<!-- <append>false</append> -->
+				<encoder>
+					<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+				</encoder>
+	        </appender>
+	    </sift>
+	 </appender>
+
+
+	<appender name="ecm" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/ECM/log4jEcm.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!--<MaxBackupIndex>2</MaxBackupIndex>-->
+			<fileNamePattern>${LOG_DIR}/ECM/log4jEcm.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<maxFileSize>30MB</maxFileSize>
+			<!-- 日志在磁盘上保留天数 -->
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<!-- <append>false</append> -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p]-[%c-%L] %m%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	<appender name="sunds" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_DIR}/SunDS/logSunDS.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/SunDS/logSunDS.%d{yyyyMMdd}_%i.log</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+			<maxFileSize>30MB</maxFileSize>
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<!-- <append>false</append> -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	<appender name="rootlog" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<key>requestNo</key>
+			<defaultValue>systemDefault</defaultValue>
+		</discriminator>
+		<sift>
+			<appender name="rootlog_2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+				<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+					<fileNamePattern>${LOG_DIR}/logAll.%d{yyyyMMdd}_%i.log</fileNamePattern>
+					<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+					<maxFileSize>30MB</maxFileSize>
+					<maxHistory>60</maxHistory>
+					<totalSizeCap>20GB</totalSizeCap>
+				</rollingPolicy>
+				<!-- <append>false</append> -->
+				<encoder>
+					<pattern>${CONSOLE_LOG_PATTERN} </pattern>
+				</encoder>
+			</appender>
+		</sift>
+	</appender>
+	<appender name="ecm" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/logEcm.%d{yyyyMMdd}_%i.log</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+			<maxFileSize>30MB</maxFileSize>
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<!-- <append>false</append> -->
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="logSay" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%p]-[%c-%L] %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<logger name="java.sql.Connection" level="debug" />
+    <logger name="java.sql.Statement" level="debug" />
+    <logger name="java.sql.PreparedStatement" level="debug" />
+    <logger name="java.sql.ResultSet" level="debug" />
+
+    <logger name="org.quartz.core.QuartzSchedulerThread" level="ERROR" />
+	<logger name="com.mchange.v2" level="ERROR" />
+	<logger name="org.apache.zookeeper" level="ERROR" />
+	<logger name="kafka.producer" level="ERROR" />
+	<logger name="kafka.consumer" level="ERROR" />
+	<logger name="org.apache.thrift" level="ERROR" />
+	<!--屏蔽这个日志登录耗时太多-->
+	<!--<logger name="com.sunyard.cop.IF.mybatis.dao.IFFieldMapper" level="OFF" />
+	<logger name="com.sunyard.cop.IF.mybatis.dao.MenuTreeMapper" level="OFF" />
+	<logger name="com.sunyard.aos.system.controller.ExternalDataController" level="OFF" />
+	<logger name="com.sunyard.cop.IF.controller.BaseController" level="ERROR" />
+	<logger name="com.sunyard.cop.IF.controller.BaseController" level="DEBUG" />-->
+
+
+	<logger name="com.sunyard.util" level="debug">
+		<appender-ref ref="ecm"/>
+	</logger>
+	<logger name="com.sunyard.client" level="debug">
+		<appender-ref ref="ecm"/>
+	</logger>
+	<logger name="com.sunyard.cop" level="debug">
+		<appender-ref ref="sunds"/>
+	</logger>
+	<logger name="org.quartz.core.QuartzSchedulerThread" level="ERROR"/>
+	<logger name="com.sunyard.ecm" level="debug">
+		<appender-ref ref="ecm"/>
+	</logger>
+	<logger name="com.mchange.v2" level="ERROR"/>
+	<logger name="org.springframework" level="ERROR"/>
+	<logger name="org.apache" level="ERROR"/>
+	<logger name="com.sunyard.exception" level="debug">
+		<appender-ref ref="ecm"/>
+	</logger>
+	<logger name="io.lettuce.core" level="ERROR"/>
+	<logger name="com.alibaba.cloud.nacos" level="ERROR"/>
+	<logger name="com.alibaba.nacos" level="ERROR"/>
+	<logger name="org.mybatis.spring.mapper.ClassPathMapperScanner" level="ERROR"/>
+	<logger name="org.mybatis.spring.SqlSessionFactoryBean" level="ERROR"/>
+	<logger name="io.netty" level="ERROR"/>
+
+<!--	<logger name="ch.qos.logback" level="OFF"/>-->
+
+
+	<root level="DEBUG">
+<!--		<appender-ref ref="STDOUT" />-->
+		<appender-ref ref="ASYNC"/>
+		<appender-ref ref="SIFT" />
+		<appender-ref ref="rootlog"/>
+	</root>
+</configuration>

@@ -8,7 +8,7 @@ server:
 
 spring:
   application:
-    name: dept8003
+    name: SUNAOS-SYSTEM
   profiles:
     # 环境配置
     active: dev
