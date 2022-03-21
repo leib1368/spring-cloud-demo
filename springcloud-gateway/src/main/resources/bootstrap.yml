@@ -11,18 +11,21 @@ spring:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
       routes:
-        - id: SUNAOS-SYSTEM
-          uri: lb://SUNAOS-SYSTEM           #使用服务名称代替具体地址
+        - id: LEIB-SYSTEM
+          uri: lb://LEIB-SYSTEM           #使用服务名称代替具体地址
           predicates:
-            - Path=/SunAOS/api/system/**    #匹配请求路径
+            - Path=/Leib/dept/**    #匹配请求路径
           filters:
             - StripPrefix=1                 #去掉前缀，1去掉/SunAOS，2去掉/SunAOS/api 3去掉/SunAOS/api/account 下同
-        - id: SUNAOS-ACCOUNT
-          uri: lb://SUNAOS-ACCOUNT
+        - id: LEIB-ACCOUNT
+          uri: lb://LEIB-ACCOUNT
           predicates:
-            - Path=/SunAOS/api/account/**
+            - Path=/LEIB/api/account/**
           filters:
             - StripPrefix=1
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+
+
+#http://LEIB-GATEWAY/Leib/dept/queryAll

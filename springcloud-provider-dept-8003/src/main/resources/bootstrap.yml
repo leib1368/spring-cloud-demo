@@ -1,14 +1,14 @@
 server:
   port: 8003 #服务端口号
 #上传远端
-#mybatis:
-#  type-aliases-package: leib.demo.entity
-#  config-location: classpath:mybatis/mybatis-config.xml
-#  mapper-locations: classpath:mybatis/mapper/*.xml
+mybatis:
+  type-aliases-package: leib.demo.entity
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
 
 spring:
   application:
-    name: SUNAOS-SYSTEM
+    name: LEIB-SYSTEM
   profiles:
     # 环境配置
     active: dev
