@@ -14,7 +14,7 @@ spring:
         - id: LEIB-SYSTEM
           uri: lb://LEIB-SYSTEM           #使用服务名称代替具体地址
           predicates:
-            - Path=/Leib/dept/**    #匹配请求路径
+            - Path=/LEIB/**    #匹配请求路径
           filters:
             - StripPrefix=1                 #去掉前缀，1去掉/SunAOS，2去掉/SunAOS/api 3去掉/SunAOS/api/account 下同
         - id: LEIB-ACCOUNT
@@ -28,4 +28,4 @@ spring:
         server-addr: 127.0.0.1:8848
 
 
-#http://LEIB-GATEWAY/Leib/dept/queryAll
+#http://localhost:9000/LEIB/dept/queryAll
