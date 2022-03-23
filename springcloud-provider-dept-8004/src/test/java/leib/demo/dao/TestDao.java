@@ -1,5 +1,6 @@
 package leib.demo.dao;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import leib.demo.bean.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,11 +17,28 @@ public class TestDao {
     @Autowired
     private UserMapper userMapper;
 
+
     @Test
-    public void testSelect() {
+    public void testQueryPLUS() {
+        System.out.println(("----- selectAll method test ------"));
+        User userList = userMapper.selectById(1);
+        System.out.println(" ----- selectAll method done ------");
+    }
+
+    @Test
+    public void testSelectPLUS() {
         System.out.println(("----- selectAll method test ------"));
         List<User> userList = userMapper.selectList(null);
         Assert.assertEquals(5, userList.size());
         userList.forEach(System.out::println);
+    }
+    @Test
+    public void testSelect() {
+        System.out.println(("----- selectAll method test ------"));
+        Page<?> page = new Page<>();
+        page.setCurrent(new Long(1));
+        page.setSize(new Long(3));
+        Page<User> userList = userMapper.queryAll(page);
+        System.out.println(userList);
     }
 }

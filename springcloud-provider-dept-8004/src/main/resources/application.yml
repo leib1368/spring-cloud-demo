@@ -19,3 +19,7 @@ management:
         include: '*'  #暴露的监控端点
 server:
   port: 8004 #服务端口号
+
+
+mybatis-plus:
+  type-aliases-package: leib.demo.entity
