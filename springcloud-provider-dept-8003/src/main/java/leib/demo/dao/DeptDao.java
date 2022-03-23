@@ -11,7 +11,6 @@ import java.util.List;
  * @Date 2020/5/9 12:18
  */
 @Mapper
-@Repository
 public interface DeptDao {
     public boolean addDept(Dept dept) ;
     public Dept queryByID(long id) ;

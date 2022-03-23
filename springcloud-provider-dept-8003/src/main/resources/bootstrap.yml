@@ -3,9 +3,12 @@ server:
 #上传远端
 mybatis:
   type-aliases-package: leib.demo.entity
-  config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
-
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+logging:
+  level:
+    leib.demo.dao: DEBUG
 spring:
   application:
     name: LEIB-SYSTEM
