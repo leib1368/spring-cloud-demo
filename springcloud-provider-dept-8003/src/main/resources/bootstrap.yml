@@ -6,9 +6,9 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
-logging:
-  level:
-    leib.demo.dao: DEBUG
+#logging:
+#  level:
+#    leib.demo.dao: DEBUG
 spring:
   application:
     name: LEIB-SYSTEM
