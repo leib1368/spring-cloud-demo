@@ -1,7 +1,6 @@
 package leib.demo.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
 import leib.demo.entity.Dept;
 import leib.demo.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
