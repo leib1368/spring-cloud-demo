@@ -1,5 +1,6 @@
 package leib.demo.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import leib.demo.bean.User;
 import org.junit.Assert;
@@ -38,7 +39,7 @@ public class TestDao {
         Page<?> page = new Page<>();
         page.setCurrent(new Long(1));
         page.setSize(new Long(3));
-        Page<User> userList = userMapper.queryAll(page);
+        IPage<User> userList = userMapper.queryAll(page);
         System.out.println(userList);
     }
 }

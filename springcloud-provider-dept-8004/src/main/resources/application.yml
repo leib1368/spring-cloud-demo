@@ -22,4 +22,6 @@ server:
 
 
 mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: leib.demo.entity

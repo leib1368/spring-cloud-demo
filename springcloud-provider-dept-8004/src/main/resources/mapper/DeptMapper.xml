@@ -14,4 +14,8 @@
     <select id="queryAll" resultType="leib.demo.bean.User"  >
         select *  from  user
     </select>
+
+    <select id="queryAll2" resultType="leib.demo.bean.User"  >
+        select *  from  user
+    </select>
 </mapper>
