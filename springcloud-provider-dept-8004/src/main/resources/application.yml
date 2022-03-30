@@ -21,7 +21,10 @@ server:
   port: 8004 #服务端口号
 
 
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: leib.demo.entity
+logging:
+  config: classpath:common/logback.xml
