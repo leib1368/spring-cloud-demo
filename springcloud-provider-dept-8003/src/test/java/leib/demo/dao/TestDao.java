@@ -11,9 +11,17 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class testDao {
+public class TestDao {
     @Autowired
     DeptDao deptDao;
+
+    @Test
+    public void C(){
+        Dept dept = new Dept();
+        dept.setDeptno(new Long(111)).setDname("q1");
+        //int i = deptDao.addDept();
+        //System.out.println(i);
+    }
 
     @Test
     public void A(){
